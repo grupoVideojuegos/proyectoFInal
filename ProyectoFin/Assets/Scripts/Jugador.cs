@@ -8,6 +8,7 @@ public class Jugador : MonoBehaviour
     [SerializeField] public float velocidad = 1.0f;
     [SerializeField] float maxVelocidad = 5.0f;
     [SerializeField]public bool tocaPiso;
+    public float jumpSpeed;
     private Rigidbody2D rbd2D;
     private Animator anim;
     
@@ -40,6 +41,15 @@ public class Jugador : MonoBehaviour
         if(horizontal < -0.1f)
         {
             transform.localScale = new Vector3(-1f, 1f, 1f);
+        }
+        
+        if (Input.GetKeyDown(KeyCode.UpArrow))
+        {
+            if(tocaPiso == true)
+            {
+                rbd2D.velocity += jumpSpeed * Vector2.up;
+            }
+            
         }
     }
 }
