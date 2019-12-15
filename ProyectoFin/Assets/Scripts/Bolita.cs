@@ -11,7 +11,8 @@ public class Bolita : MonoBehaviour
     [SerializeField] float speedY= 5f;
     //estados
     private Boolean inicio = false;
-    Vector2 distancia; //distancia entre la bola y la plataforma
+    private Rigidbody2D rb;
+    
 
     //Componentes guardados en referencias
     AudioSource miAudio;
@@ -21,6 +22,9 @@ public class Bolita : MonoBehaviour
     {
         
         miAudio = GetComponent<AudioSource>();
+        rb = GetComponent<Rigidbody2D>();
+        rb.AddForce(Vector2.left*1, ForceMode2D.Impulse);
+
     }
 
     // Update is called once per frame

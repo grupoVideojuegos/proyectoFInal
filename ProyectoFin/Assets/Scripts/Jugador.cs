@@ -54,4 +54,9 @@ public class Jugador : MonoBehaviour
             salto = false; 
         }
     }
+
+    public void OnBecameInvisible()
+    {
+        transform.position = new Vector3(-20,-6, 0);
+    }
 }
