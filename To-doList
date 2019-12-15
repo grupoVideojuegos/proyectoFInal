@@ -8,8 +8,8 @@ Game scenes:
   +make the jumop animation for the player
   +make the player run 
   +make the player jump
-  make the rival 
-  match the animation with the jump 
+  +match the animation with the jump 
+  +correct the rigidbody to the platforms
   make animation for obstacles 
   place obstacles in canvas 
  

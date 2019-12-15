@@ -7,10 +7,12 @@ public class Jugador : MonoBehaviour
     //variables 
     [SerializeField] public float velocidad = 1.0f;
     [SerializeField] float maxVelocidad = 5.0f;
-    [SerializeField]public bool tocaPiso;
-    public float jumpSpeed;
+    [SerializeField] public bool tocaPiso;
+    [SerializeField] float fuerzaSalto = 6.4f;
+    
     private Rigidbody2D rbd2D;
     private Animator anim;
+    private bool salto;
     
     // Start is called before the first frame update
     void Start()
@@ -24,6 +26,9 @@ public class Jugador : MonoBehaviour
     {
         anim.SetFloat("Velocidad",Mathf.Abs(rbd2D.velocity.x));
         anim.SetBool("TocaPiso", tocaPiso);
+        if (Input.GetKeyDown(KeyCode.UpArrow) && tocaPiso){
+            salto = true;
+        }
     }
 
     private void FixedUpdate()
@@ -42,14 +47,11 @@ public class Jugador : MonoBehaviour
         {
             transform.localScale = new Vector3(-1f, 1f, 1f);
         }
-        
-        if (Input.GetKeyDown(KeyCode.UpArrow))
+
+        if (salto)
         {
-            if(tocaPiso == true)
-            {
-                rbd2D.velocity += jumpSpeed * Vector2.up;
-            }
-            
+            rbd2D.AddForce(Vector2.up*fuerzaSalto,ForceMode2D.Impulse);
+            salto = false; 
         }
     }
 }
