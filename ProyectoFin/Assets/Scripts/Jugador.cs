@@ -5,11 +5,17 @@ using UnityEngine;
 public class Jugador : MonoBehaviour
 {
     //variables 
+    private int facingDirection = 1;
     [SerializeField] public float velocidad = 1.0f;
     [SerializeField] float maxVelocidad = 5.0f;
     [SerializeField] public bool tocaPiso;
     [SerializeField] float fuerzaSalto = 6.4f;
-    
+    public float wallHopForce;
+    public float wallJumpForce;
+
+    public Vector2 wallHopDirection;
+    public Vector2 wallJumpDirection;
+
     private Rigidbody2D rbd2D;
     private Animator anim;
     private bool salto;
@@ -19,6 +25,8 @@ public class Jugador : MonoBehaviour
     {
         rbd2D = GetComponent<Rigidbody2D>();
         anim = GetComponent<Animator>();
+        wallHopDirection.Normalize();
+        wallJumpDirection.Normalize();
     }
 
     // Update is called once per frame
@@ -59,4 +67,5 @@ public class Jugador : MonoBehaviour
     {
         transform.position = new Vector3(-20,-6, 0);
     }
+
 }
