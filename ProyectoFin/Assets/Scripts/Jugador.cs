@@ -4,33 +4,49 @@ using UnityEngine;
 
 public class Jugador : MonoBehaviour
 {
-    //variables 
+
     private float movementInputDirection;
+
+    private int amountOfJumpsLeft;
     private int facingDirection = 1;
-    [SerializeField] public float velocidad = 1.0f;
-    [SerializeField] float maxVelocidad = 5.0f;
-    [SerializeField] public bool tocaPiso;
-    [SerializeField] float fuerzaSalto = 6.4f;
+
+    private bool isFacingRight = true;
+    private bool isWalking;
+    public bool isGrounded;
+    private bool isTouchingWall;
+    private bool isWallSliding;
+    private bool canJump;
+
+    private Rigidbody2D rb;
+    private Animator anim;
+
+    public int amountOfJumps = 1;
+
+    public float movementSpeed = 10.0f;
+    public float jumpForce = 16.0f;
+    public float groundCheckRadius;
+    public float wallCheckDistance;
+    public float wallSlideSpeed;
+    public float movementForceInAir;
+    public float airDragMultiplier = 0.95f;
+    public float variableJumpHeightMultiplier = 0.5f;
     public float wallHopForce;
     public float wallJumpForce;
 
     public Vector2 wallHopDirection;
     public Vector2 wallJumpDirection;
-    private bool isTouchingWall;
-    private bool isWallSliding;
-    private Rigidbody2D rbd2D;
-    private Animator anim;
-    private bool salto;
+
     public Transform groundCheck;
     public Transform wallCheck;
-    public float groundCheckRadius;
-    public float wallCheckDistance;
+
     public LayerMask whatIsGround;
+
     // Start is called before the first frame update
     void Start()
     {
-        rbd2D = GetComponent<Rigidbody2D>();
+        rb = GetComponent<Rigidbody2D>();
         anim = GetComponent<Animator>();
+        amountOfJumpsLeft = amountOfJumps;
         wallHopDirection.Normalize();
         wallJumpDirection.Normalize();
     }
@@ -40,25 +56,20 @@ public class Jugador : MonoBehaviour
     {
         CheckInput();
         CheckMovementDirection();
- 
+        UpdateAnimations();
+        CheckIfCanJump();
         CheckIfWallSliding();
-
-        anim.SetFloat("Velocidad",Mathf.Abs(rbd2D.velocity.x));
-        anim.SetBool("TocaPiso", tocaPiso);
-        if (Input.GetKeyDown(KeyCode.UpArrow) && tocaPiso){
-            salto = true;
-        }
     }
 
     private void FixedUpdate()
     {
         ApplyMovement();
         CheckSurroundings();
-        
     }
+
     private void CheckIfWallSliding()
     {
-        if (isTouchingWall && !tocaPiso && rbd2D.velocity.y < 0)
+        if (isTouchingWall && !isGrounded && rb.velocity.y < 0)
         {
             isWallSliding = true;
         }
@@ -67,14 +78,61 @@ public class Jugador : MonoBehaviour
             isWallSliding = false;
         }
     }
+
     private void CheckSurroundings()
     {
-        tocaPiso = Physics2D.OverlapCircle(groundCheck.position, groundCheckRadius, whatIsGround);
+        isGrounded = Physics2D.OverlapCircle(groundCheck.position, groundCheckRadius, whatIsGround);
 
         isTouchingWall = Physics2D.Raycast(wallCheck.position, transform.right, wallCheckDistance, whatIsGround);
     }
 
-   
+    private void CheckIfCanJump()
+    {
+        if ((isGrounded && rb.velocity.y <= 0) || isWallSliding)
+        {
+            amountOfJumpsLeft = amountOfJumps;
+        }
+
+        if (amountOfJumpsLeft <= 0)
+        {
+            canJump = false;
+        }
+        else
+        {
+            canJump = true;
+        }
+
+    }
+
+    private void CheckMovementDirection()
+    {
+        if (isFacingRight && movementInputDirection < 0)
+        {
+            Flip();
+        }
+        else if (!isFacingRight && movementInputDirection > 0)
+        {
+            Flip();
+        }
+
+        if (rb.velocity.x != 0)
+        {
+            isWalking = true;
+        }
+        else
+        {
+            isWalking = false;
+        }
+    }
+
+    private void UpdateAnimations()
+    {
+        anim.SetBool("isWalking", isWalking);
+        anim.SetBool("TocaPiso", isGrounded);
+        anim.SetFloat("yVelocity", rb.velocity.y);
+        anim.SetBool("isWallSliding", isWallSliding);
+    }
+
     private void CheckInput()
     {
         movementInputDirection = Input.GetAxisRaw("Horizontal");
@@ -86,10 +144,11 @@ public class Jugador : MonoBehaviour
 
         if (Input.GetButtonUp("Jump"))
         {
-            rbd2D.velocity = new Vector2(rbd2D.velocity.x, rbd2D.velocity.y * variableJumpHeightMultiplier);
+            rb.velocity = new Vector2(rb.velocity.x, rb.velocity.y * variableJumpHeightMultiplier);
         }
 
     }
+
     private void Jump()
     {
         if (canJump && !isWallSliding)
@@ -113,60 +172,33 @@ public class Jugador : MonoBehaviour
         }
     }
 
-
-    private void CheckMovementDirection()
-    {
-        if (isFacingRight && movementInputDirection < 0)
-        {
-            Flip();
-        }
-        else if (!isFacingRight && movementInputDirection > 0)
-        {
-            Flip();
-        }
-
-        if (rbd2D.velocity.x != 0)
-        {
-            isWalking = true;
-        }
-        else
-        {
-            isWalking = false;
-        }
-    }
-   
-
-    public void OnBecameInvisible()
-    {
-        transform.position = new Vector3(-20,-6, 0);
-    }
     private void ApplyMovement()
     {
 
-        if (tocaPiso)
+        if (isGrounded)
         {
-            rbd2D.velocity = new Vector2(movementSpeed * movementInputDirection, rbd2D.velocity.y);
+            rb.velocity = new Vector2(movementSpeed * movementInputDirection, rb.velocity.y);
         }
-        else if (!tocaPiso && !isWallSliding && movementInputDirection != 0)
+        else if (!isGrounded && !isWallSliding && movementInputDirection != 0)
         {
             Vector2 forceToAdd = new Vector2(movementForceInAir * movementInputDirection, 0);
-            rbd2D.AddForce(forceToAdd);
+            rb.AddForce(forceToAdd);
 
-            if (Mathf.Abs(rbd2D.velocity.x) > movementSpeed)
+            if (Mathf.Abs(rb.velocity.x) > movementSpeed)
             {
-                rbd2D.velocity = new Vector2(movementSpeed * movementInputDirection, rbd2D.velocity.y);
+                rb.velocity = new Vector2(movementSpeed * movementInputDirection, rb.velocity.y);
             }
         }
-        else if (!tocaPiso && !isWallSliding && movementInputDirection == 0)
+        else if (!isGrounded && !isWallSliding && movementInputDirection == 0)
         {
-            rbd2D.velocity = new Vector2(rbd2D.velocity.x * airDragMultiplier, rbd2D.velocity.y);
+            rb.velocity = new Vector2(rb.velocity.x * airDragMultiplier, rb.velocity.y);
         }
 
         if (isWallSliding)
         {
-            if (rbd2D.velocity.y < -wallSlideSpeed)
+            if (rb.velocity.y < -wallSlideSpeed)
             {
-                rbd2D.velocity = new Vector2(rbd2D.velocity.x, -wallSlideSpeed);
+                rb.velocity = new Vector2(rb.velocity.x, -wallSlideSpeed);
             }
         }
     }
@@ -180,4 +212,6 @@ public class Jugador : MonoBehaviour
             transform.Rotate(0.0f, 180.0f, 0.0f);
         }
     }
+
+  
 }

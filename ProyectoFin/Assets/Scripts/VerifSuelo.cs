@@ -17,7 +17,7 @@ public class VerifSuelo : MonoBehaviour
     {
         if (collision.gameObject.tag == "piso")
         {
-            player.tocaPiso = true;
+            player.isGrounded = true;
         }
         
     }
@@ -26,7 +26,7 @@ public class VerifSuelo : MonoBehaviour
     {
         if (collision.gameObject.tag == "piso")
         {
-            player.tocaPiso = false;
+            player.isGrounded = false;
         }
     }
 }
