@@ -38,7 +38,7 @@ public class Jugador : MonoBehaviour
 
     public Transform groundCheck;
     public Transform wallCheck;
-
+    public Transform spawn;
     public LayerMask whatIsGround;
 
     // Start is called before the first frame update
@@ -210,6 +210,9 @@ public class Jugador : MonoBehaviour
             transform.Rotate(0.0f, 180.0f, 0.0f);
         }
     }
+    public void OnBecameInvisible()
+    {
+        transform.position = spawn.position;
+    }
 
-  
 }
