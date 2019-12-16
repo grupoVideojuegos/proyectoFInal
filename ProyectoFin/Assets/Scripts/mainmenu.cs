@@ -9,6 +9,11 @@ public class mainmenu : MonoBehaviour
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);//scene changer
     }
+    public void SelectScene()
+    {
+        SceneManager.LoadScene(2);
+
+    }
     public void QuitGame() {
         Debug.Log("QUIT");
         Application.Quit();
