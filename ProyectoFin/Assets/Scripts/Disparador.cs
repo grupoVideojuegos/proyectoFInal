@@ -8,18 +8,21 @@ public class Disparador : MonoBehaviour
     private float tiempoDisparo;
     [SerializeField] float iniciarTiempoDisparo;
     [SerializeField] GameObject bala;
-    private Transform jugador; 
+    private Transform jugador;
+
+    
 
     // Start is called before the first frame update
     void Start()
     {
-        jugador = GameObject.FindObjectOfType<Jugador>().transform;
+        jugador = GameObject.FindGameObjectWithTag("Player").transform;
+        tiempoDisparo = iniciarTiempoDisparo;
     }
 
     // Update is called once per frame
     void Update()
     {
-        if(tiempoDisparo <= 0)
+        if(tiempoDisparo <= 0f)
         {
             Instantiate(bala, transform.position, Quaternion.identity);
             tiempoDisparo = iniciarTiempoDisparo;

@@ -11,7 +11,7 @@ public class Bolita : MonoBehaviour
 
     private void Start()
     {
-        jugador = GameObject.FindObjectOfType<Jugador>().transform;
+        jugador = GameObject.FindGameObjectWithTag("Player").transform;
         target = new Vector2(jugador.position.x, jugador.position.y);
     }
     private void Update()
@@ -22,10 +22,14 @@ public class Bolita : MonoBehaviour
             DestruirBala();
         } 
     }
-    private void OnTriggerEnter2D(Collider2D other)
+    private void OnTriggerEnter2D(Collider2D collision)
     {
-        
+        if (collision.CompareTag("Player"))
+        {
+            DestruirBala();
+        }
     }
+
     void DestruirBala()
     {
         Destroy(gameObject);

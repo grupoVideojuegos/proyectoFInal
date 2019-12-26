@@ -76,7 +76,7 @@ GameObject:
   - component: {fileID: 3688467573504229750}
   m_Layer: 0
   m_Name: Jugador
-  m_TagString: piso
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -211,6 +211,7 @@ MonoBehaviour:
   wallJumpDirection: {x: 1, y: 2}
   groundCheck: {fileID: 3688467573848500049}
   wallCheck: {fileID: 3688467573504229748}
+  spawn: {fileID: 0}
   whatIsGround:
     serializedVersion: 2
     m_Bits: 0
