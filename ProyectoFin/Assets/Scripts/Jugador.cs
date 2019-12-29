@@ -127,8 +127,9 @@ public class Jugador : MonoBehaviour
 
     private void UpdateAnimations()
     {
-        anim.SetBool("TocaPiso", isGrounded);
-        anim.SetFloat("Velocidad", Mathf.Abs(rb.velocity.x));
+        anim.SetBool("isWalking",isWalking);
+        //anim.SetBool("TocaPiso", isGrounded);
+        //anim.SetFloat("Velocidad", Mathf.Abs(rb.velocity.x));
     }
 
     private void CheckInput()
@@ -210,5 +211,7 @@ public class Jugador : MonoBehaviour
             transform.Rotate(0.0f, 180.0f, 0.0f);
         }
     }
-    
+    private void OnDrawGizmos() {
+        Gizmos.DrawWireSphere(groundCheck.position, groundCheckRadius);
+    }
 }

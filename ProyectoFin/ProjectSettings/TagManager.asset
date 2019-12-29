@@ -3,7 +3,8 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - piso
   layers:
   - Default
   - TransparentFX
@@ -40,4 +41,16 @@ TagManager:
   m_SortingLayers:
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: Background
+    uniqueID: 78811495
+    locked: 0
+  - name: Platform
+    uniqueID: 236304281
+    locked: 0
+  - name: Player
+    uniqueID: 637309761
+    locked: 0
+  - name: Obstaculos
+    uniqueID: 1436040127
     locked: 0
