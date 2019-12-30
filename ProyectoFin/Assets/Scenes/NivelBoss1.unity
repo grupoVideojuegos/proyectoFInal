@@ -151,7 +151,7 @@ Transform:
   m_GameObject: {fileID: 184830952}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 4.6019864, y: 5.2932873, z: -13.583965}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.59062505, y: 0.67482, z: 1}
   m_Children:
   - {fileID: 1298521106}
   - {fileID: 881927843}
@@ -207,7 +207,7 @@ TilemapRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: a2ec68e5a84f1d940b20d855952e8d90, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -8730,7 +8730,12 @@ PrefabInstance:
     - target: {fileID: 3688467573504229751, guid: 53497c9f9311ba3499ef8d918431bfe7,
         type: 3}
       propertyPath: groundCheckRadius
-      value: 0.3
+      value: 0.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3688467573504229751, guid: 53497c9f9311ba3499ef8d918431bfe7,
+        type: 3}
+      propertyPath: whatIsGround.m_Bits
+      value: 256
       objectReference: {fileID: 0}
     - target: {fileID: 3688467573504229747, guid: 53497c9f9311ba3499ef8d918431bfe7,
         type: 3}
@@ -8762,6 +8767,11 @@ PrefabInstance:
       propertyPath: m_Offset.y
       value: -0.1825454
       objectReference: {fileID: 0}
+    - target: {fileID: 3688467573504229749, guid: 53497c9f9311ba3499ef8d918431bfe7,
+        type: 3}
+      propertyPath: m_Material
+      value: 
+      objectReference: {fileID: 6200000, guid: d1e498e1df81a5a4f9b0bf75ef469128, type: 2}
     - target: {fileID: 3688467573504229746, guid: 53497c9f9311ba3499ef8d918431bfe7,
         type: 3}
       propertyPath: m_GravityScale
@@ -8770,12 +8780,12 @@ PrefabInstance:
     - target: {fileID: 3688467573427009295, guid: 53497c9f9311ba3499ef8d918431bfe7,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.779
+      value: -0.539
       objectReference: {fileID: 0}
     - target: {fileID: 3688467573427009295, guid: 53497c9f9311ba3499ef8d918431bfe7,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0.02
+      value: 0.014
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 53497c9f9311ba3499ef8d918431bfe7, type: 3}
@@ -8857,7 +8867,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 881927840}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -6.8929863, y: 1.683713, z: 3.5839653}
+  m_LocalPosition: {x: -11.670664, y: 2.495055, z: 3.5839653}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 184830953}
@@ -9012,7 +9022,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1298521105}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -6.8929863, y: 1.683713, z: 3.5839653}
+  m_LocalPosition: {x: -11.670664, y: 2.495055, z: 3.5839653}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1200215489}
@@ -9074,9 +9084,9 @@ GameObject:
   - component: {fileID: 2017207154}
   - component: {fileID: 2017207153}
   - component: {fileID: 2017207152}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Platform
-  m_TagString: Untagged
+  m_TagString: piso
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -9117,7 +9127,7 @@ TilemapRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: a2ec68e5a84f1d940b20d855952e8d90, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0

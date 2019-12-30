@@ -128,8 +128,8 @@ public class Jugador : MonoBehaviour
     private void UpdateAnimations()
     {
         anim.SetBool("isWalking",isWalking);
-        //anim.SetBool("TocaPiso", isGrounded);
-        //anim.SetFloat("Velocidad", Mathf.Abs(rb.velocity.x));
+        anim.SetBool("isGrounded", isGrounded);
+        anim.SetFloat("yVelocity", rb.velocity.y);
     }
 
     private void CheckInput()
