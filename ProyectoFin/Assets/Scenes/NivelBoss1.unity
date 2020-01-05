@@ -120,12 +120,6 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
---- !u!4 &103948724 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 3688467573427009295, guid: 53497c9f9311ba3499ef8d918431bfe7,
-    type: 3}
-  m_PrefabInstance: {fileID: 763659454}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &184830952
 GameObject:
   m_ObjectHideFlags: 0
@@ -8717,76 +8711,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 3688467573504229751, guid: 53497c9f9311ba3499ef8d918431bfe7,
-        type: 3}
-      propertyPath: groundCheck
-      value: 
-      objectReference: {fileID: 103948724}
-    - target: {fileID: 3688467573504229751, guid: 53497c9f9311ba3499ef8d918431bfe7,
-        type: 3}
-      propertyPath: wallCheck
-      value: 
-      objectReference: {fileID: 1718116476}
-    - target: {fileID: 3688467573504229751, guid: 53497c9f9311ba3499ef8d918431bfe7,
-        type: 3}
-      propertyPath: groundCheckRadius
-      value: 0.2
-      objectReference: {fileID: 0}
-    - target: {fileID: 3688467573504229751, guid: 53497c9f9311ba3499ef8d918431bfe7,
-        type: 3}
-      propertyPath: whatIsGround.m_Bits
-      value: 256
-      objectReference: {fileID: 0}
-    - target: {fileID: 3688467573504229747, guid: 53497c9f9311ba3499ef8d918431bfe7,
-        type: 3}
-      propertyPath: m_SortingLayerID
-      value: 637309761
-      objectReference: {fileID: 0}
-    - target: {fileID: 3688467573504229747, guid: 53497c9f9311ba3499ef8d918431bfe7,
-        type: 3}
-      propertyPath: m_SortingLayer
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 3688467573504229749, guid: 53497c9f9311ba3499ef8d918431bfe7,
-        type: 3}
-      propertyPath: m_Offset.x
-      value: -0.06245184
-      objectReference: {fileID: 0}
-    - target: {fileID: 3688467573504229749, guid: 53497c9f9311ba3499ef8d918431bfe7,
-        type: 3}
-      propertyPath: m_Size.x
-      value: 0.74620914
-      objectReference: {fileID: 0}
-    - target: {fileID: 3688467573504229749, guid: 53497c9f9311ba3499ef8d918431bfe7,
-        type: 3}
-      propertyPath: m_Size.y
-      value: 0.90563434
-      objectReference: {fileID: 0}
-    - target: {fileID: 3688467573504229749, guid: 53497c9f9311ba3499ef8d918431bfe7,
-        type: 3}
-      propertyPath: m_Offset.y
-      value: -0.1825454
-      objectReference: {fileID: 0}
-    - target: {fileID: 3688467573504229749, guid: 53497c9f9311ba3499ef8d918431bfe7,
-        type: 3}
-      propertyPath: m_Material
-      value: 
-      objectReference: {fileID: 6200000, guid: d1e498e1df81a5a4f9b0bf75ef469128, type: 2}
-    - target: {fileID: 3688467573504229746, guid: 53497c9f9311ba3499ef8d918431bfe7,
-        type: 3}
-      propertyPath: m_GravityScale
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 3688467573427009295, guid: 53497c9f9311ba3499ef8d918431bfe7,
-        type: 3}
-      propertyPath: m_LocalPosition.y
-      value: -0.539
-      objectReference: {fileID: 0}
-    - target: {fileID: 3688467573427009295, guid: 53497c9f9311ba3499ef8d918431bfe7,
-        type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0.014
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 53497c9f9311ba3499ef8d918431bfe7, type: 3}
 --- !u!1 &881927840
@@ -9064,12 +8988,6 @@ MonoBehaviour:
         m_Calls: []
   m_LegacyBlendHint: 0
   m_ComponentOwner: {fileID: 1200215489}
---- !u!4 &1718116476 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 3688467573848500049, guid: 53497c9f9311ba3499ef8d918431bfe7,
-    type: 3}
-  m_PrefabInstance: {fileID: 763659454}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &2017207148
 GameObject:
   m_ObjectHideFlags: 0

@@ -26,7 +26,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3688467573427009294}
   m_LocalRotation: {x: -0.0131248925, y: -0, z: -0, w: 0.9999139}
-  m_LocalPosition: {x: -0.08, y: -0.612, z: 0.016}
+  m_LocalPosition: {x: -0.08, y: -0.539, z: 0.014}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 3688467573504229748}
@@ -39,7 +39,7 @@ CircleCollider2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3688467573427009294}
-  m_Enabled: 1
+  m_Enabled: 0
   m_Density: 1
   m_Material: {fileID: 0}
   m_IsTrigger: 0
@@ -155,7 +155,7 @@ CapsuleCollider2D:
   m_GameObject: {fileID: 3688467573504229745}
   m_Enabled: 1
   m_Density: 1
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 6200000, guid: d1e498e1df81a5a4f9b0bf75ef469128, type: 2}
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
@@ -196,11 +196,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isGrounded: 0
-  amountOfJumps: 2
+  amountOfJumps: 1
   movementSpeed: 5
   jumpForce: 6
-  groundCheckRadius: 0.2
-  wallCheckDistance: 0.4
+  groundCheckRadius: 0.26
+  wallCheckDistance: 0.42
   wallSlideSpeed: 2
   movementForceInAir: 50
   airDragMultiplier: 0.95
