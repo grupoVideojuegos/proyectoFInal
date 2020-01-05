@@ -177,7 +177,7 @@ Rigidbody2D:
   m_Mass: 1
   m_LinearDrag: 0
   m_AngularDrag: 0.05
-  m_GravityScale: 1
+  m_GravityScale: 5
   m_Material: {fileID: 0}
   m_Interpolate: 0
   m_SleepingMode: 1
@@ -197,16 +197,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isGrounded: 0
   amountOfJumps: 1
-  movementSpeed: 5
-  jumpForce: 6
+  movementSpeed: 9
+  jumpForce: 15
   groundCheckRadius: 0.26
   wallCheckDistance: 0.42
-  wallSlideSpeed: 2
+  wallSlideSpeed: 1
   movementForceInAir: 50
   airDragMultiplier: 0.95
   variableJumpHeightMultiplier: 0.5
   wallHopForce: 10
-  wallJumpForce: 20
+  wallJumpForce: 30
+  jumpTimerSet: 0.15
+  turnTimerSet: 0.1
   wallHopDirection: {x: 1, y: 0.5}
   wallJumpDirection: {x: 1, y: 2}
   groundCheck: {fileID: 3688467573427009295}

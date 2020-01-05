@@ -6,6 +6,8 @@ public class Jugador : MonoBehaviour
 {
 
     private float movementInputDirection;
+    private float jumpTimer;
+    private float turnTimer;
 
     private int amountOfJumpsLeft;
     private int facingDirection = 1;
@@ -15,7 +17,12 @@ public class Jugador : MonoBehaviour
     public bool isGrounded;
     private bool isTouchingWall;
     private bool isWallSliding;
-    private bool canJump;
+    private bool canNormalJump;
+    private bool canWallJump;
+    private bool isAttempingToJump;
+    private bool checkJumpMultiplier;
+    private bool canMove;
+    private bool canFlip;
 
     private Rigidbody2D rb;
     private Animator anim;
@@ -32,6 +39,8 @@ public class Jugador : MonoBehaviour
     public float variableJumpHeightMultiplier = 0.5f;
     public float wallHopForce;
     public float wallJumpForce;
+    public float jumpTimerSet = 0.15f;
+    public float turnTimerSet = 0.1f; 
 
     public Vector2 wallHopDirection;
     public Vector2 wallJumpDirection;
@@ -59,6 +68,7 @@ public class Jugador : MonoBehaviour
         UpdateAnimations();
         CheckIfCanJump();
         CheckIfWallSliding();
+        CheckJump();
     }
 
     private void FixedUpdate()
@@ -69,7 +79,7 @@ public class Jugador : MonoBehaviour
 
     private void CheckIfWallSliding()
     {
-        if (isTouchingWall && !isGrounded && rb.velocity.y < 0)
+        if (isTouchingWall && movementInputDirection==facingDirection && rb.velocity.y < 0)
         {
             isWallSliding = true;
         }
@@ -88,18 +98,21 @@ public class Jugador : MonoBehaviour
 
     private void CheckIfCanJump()
     {
-        if ((isGrounded && rb.velocity.y <= 0) || isWallSliding)
+        if ((isGrounded && rb.velocity.y <= 0.01f))
         {
             amountOfJumpsLeft = amountOfJumps;
         }
-
+        if (isTouchingWall)
+        {
+            canWallJump = true;
+        }
         if (amountOfJumpsLeft <= 0)
         {
-            canJump = false;
+            canNormalJump = false;
         }
         else
         {
-            canJump = true;
+            canNormalJump = true;
         }
 
     }
@@ -138,61 +151,105 @@ public class Jugador : MonoBehaviour
 
         if (Input.GetButtonDown("Jump"))
         {
-            Jump();
+            if(isGrounded || amountOfJumpsLeft > 0 && isTouchingWall)
+            {
+                NormalJump();
+            }
+            else
+            {
+                jumpTimer = jumpTimerSet;
+                isAttempingToJump = true;
+            }
+        }
+        if (Input.GetButtonDown("Horizontal") && isTouchingWall)
+        {
+            if (!isGrounded && movementInputDirection!=facingDirection)
+            {
+                canMove = false;
+                canFlip = false;
+
+                turnTimer = turnTimerSet;
+            }
+        }
+        if (!canMove)
+        {
+            turnTimer -= Time.deltaTime;
+
+            if (turnTimer <= 0)
+            {
+                canMove = true;
+                canFlip = true;
+            }
         }
 
-        if (Input.GetButtonUp("Jump"))
+        if (checkJumpMultiplier && !Input.GetButton("Jump"))
         {
+            checkJumpMultiplier = false;
             rb.velocity = new Vector2(rb.velocity.x, rb.velocity.y * variableJumpHeightMultiplier);
         }
 
     }
 
-    private void Jump()
+    private void CheckJump()
     {
-        if (canJump && !isWallSliding)
+        if (jumpTimer > 0)
+        {
+            //Wall Jump
+            if(!isGrounded && isTouchingWall && movementInputDirection!=0 && movementInputDirection != facingDirection)
+            {
+                WallJump();
+            }
+            else if (isGrounded)
+            {
+                NormalJump();
+            }
+            if(isAttempingToJump)
+            {
+                jumpTimer -= Time.deltaTime;
+            }
+        }
+    }
+    private void NormalJump()
+    {
+        if (canNormalJump)
         {
             rb.velocity = new Vector2(rb.velocity.x, jumpForce);
             amountOfJumpsLeft--;
+            jumpTimer = 0;
+            isAttempingToJump = false;
+            checkJumpMultiplier = true;
         }
-        else if (isWallSliding && movementInputDirection == 0 && canJump) //Wall hop
+    }
+    private void WallJump()
+    {
+        if (canWallJump)
         {
+            rb.velocity = new Vector2(rb.velocity.x , 0.0f);
             isWallSliding = false;
-            amountOfJumpsLeft--;
-            Vector2 forceToAdd = new Vector2(wallHopForce * wallHopDirection.x * -facingDirection, wallHopForce * wallHopDirection.y);
-            rb.AddForce(forceToAdd, ForceMode2D.Impulse);
-        }
-        else if ((isWallSliding || isTouchingWall) && movementInputDirection != 0 && canJump)
-        {
-            isWallSliding = false;
+            amountOfJumpsLeft = amountOfJumps;
             amountOfJumpsLeft--;
             Vector2 forceToAdd = new Vector2(wallJumpForce * wallJumpDirection.x * movementInputDirection, wallJumpForce * wallJumpDirection.y);
             rb.AddForce(forceToAdd, ForceMode2D.Impulse);
+            jumpTimer = 0;
+            isAttempingToJump = false;
+            checkJumpMultiplier = true;
+            turnTimer = 0;
+            canMove = true;
+            canFlip = true;
         }
     }
 
     private void ApplyMovement()
     {
-
-        if (isGrounded)
-        {
-            rb.velocity = new Vector2(movementSpeed * movementInputDirection, rb.velocity.y);
-        }
-        else if (!isGrounded && !isWallSliding && movementInputDirection != 0)
-        {
-            Vector2 forceToAdd = new Vector2(movementForceInAir * movementInputDirection, 0);
-            rb.AddForce(forceToAdd);
-
-            if (Mathf.Abs(rb.velocity.x) > movementSpeed)
-            {
-                rb.velocity = new Vector2(movementSpeed * movementInputDirection, rb.velocity.y);
-            }
-        }
-        else if (!isGrounded && !isWallSliding && movementInputDirection == 0)
+        if (!isGrounded && !isWallSliding && movementInputDirection == 0)
         {
             rb.velocity = new Vector2(rb.velocity.x * airDragMultiplier, rb.velocity.y);
         }
-
+        else if(canMove)
+        {
+            rb.velocity = new Vector2(movementSpeed * movementInputDirection, rb.velocity.y);
+        }
+        
         if (isWallSliding)
         {
             if (rb.velocity.y < -wallSlideSpeed)
@@ -204,7 +261,7 @@ public class Jugador : MonoBehaviour
 
     private void Flip()
     {
-        if (!isWallSliding)
+        if (!isWallSliding && canFlip)
         {
             facingDirection *= -1;
             isFacingRight = !isFacingRight;
