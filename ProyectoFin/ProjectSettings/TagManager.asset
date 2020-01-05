@@ -15,7 +15,7 @@ TagManager:
   - 
   - 
   - Ground
-  - 
+  - Platform
   - 
   - 
   - 
@@ -45,11 +45,14 @@ TagManager:
   - name: Background
     uniqueID: 78811495
     locked: 0
-  - name: Platform
-    uniqueID: 236304281
-    locked: 0
   - name: Player
     uniqueID: 637309761
+    locked: 0
+  - name: Ground
+    uniqueID: 1033716191
+    locked: 0
+  - name: Platform
+    uniqueID: 236304281
     locked: 0
   - name: Obstaculos
     uniqueID: 1436040127

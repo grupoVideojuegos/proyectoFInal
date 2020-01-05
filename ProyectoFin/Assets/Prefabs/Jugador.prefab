@@ -133,7 +133,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 637309761
-  m_SortingLayer: 3
+  m_SortingLayer: 2
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 72de0c64f2c6a498096698322c976a67, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -199,7 +199,7 @@ MonoBehaviour:
   amountOfJumps: 1
   movementSpeed: 9
   jumpForce: 15
-  groundCheckRadius: 0.26
+  groundCheckRadius: 0.35
   wallCheckDistance: 0.42
   wallSlideSpeed: 1
   movementForceInAir: 50
