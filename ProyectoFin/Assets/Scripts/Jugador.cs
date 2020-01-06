@@ -75,6 +75,10 @@ public class Jugador : MonoBehaviour
     {
         ApplyMovement();
         CheckSurroundings();
+        if (transform.position.y < -14.29f)
+        {
+            transform.position = spawn.position;
+        }
     }
 
     private void CheckIfWallSliding()
