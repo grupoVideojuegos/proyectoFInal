@@ -17,9 +17,14 @@ public class VerifSuelo : MonoBehaviour
     {
         if (collision.gameObject.tag == "piso")
         {
-            player.isGrounded = true;
+            //player.isGrounded = true;
         }
-        
+        if (collision.gameObject.tag == "platform")
+        {
+            player.isGrounded = true;
+            player.transform.parent = collision.transform;
+        }
+
     }
 
     public void OnCollisionExit2D(Collision2D collision)
@@ -27,6 +32,11 @@ public class VerifSuelo : MonoBehaviour
         if (collision.gameObject.tag == "piso")
         {
             player.isGrounded = false;
+        }
+        if (collision.gameObject.tag == "platform")
+        {
+            player.isGrounded = false;
+            player.transform.parent = null;
         }
     }
 }
