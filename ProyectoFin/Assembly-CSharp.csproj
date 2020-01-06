@@ -63,6 +63,7 @@
      <Compile Include="Assets\Scripts\Hormiga.cs" />
      <Compile Include="Assets\Scripts\Jugador.cs" />
      <Compile Include="Assets\Scripts\mainmenu.cs" />
+     <Compile Include="Assets\Scripts\NextLevel.cs" />
      <Compile Include="Assets\Scripts\PlatformFalling.cs" />
      <Compile Include="Assets\Scripts\Trayectoria.cs" />
      <Compile Include="Assets\Scripts\VerifSuelo.cs" />
