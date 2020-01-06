@@ -296,5 +296,7 @@ Assets\Scripts\ColisionPerdida.cs
 Assets\Scripts\Disparador.cs
 Assets\Scripts\Jugador.cs
 Assets\Scripts\mainmenu.cs
+Assets\Scripts\PlatformFalling.cs
 Assets\Scripts\Trayectoria.cs
 Assets\Scripts\VerifSuelo.cs
+Assets\Sprites\CameraFollow.cs
