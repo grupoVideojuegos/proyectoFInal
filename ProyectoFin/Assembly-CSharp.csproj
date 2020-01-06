@@ -59,6 +59,7 @@
   <ItemGroup>
     <Compile Include="Assets\Scripts\Bolita.cs" />
     <Compile Include="Assets\Scripts\CaidaBloque.cs" />
+    <Compile Include="Assets\Scripts\CameraFollow.cs" />
     <Compile Include="Assets\Scripts\ColisionPerdida.cs" />
     <Compile Include="Assets\Scripts\Disparador.cs" />
     <Compile Include="Assets\Scripts\Jugador.cs" />
