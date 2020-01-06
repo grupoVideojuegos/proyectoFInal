@@ -4,52 +4,38 @@ using UnityEngine;
 
 public class Hormiga : MonoBehaviour
 {
-    private Animator anim;
-    private Rigidbody2D rb;
-    [SerializeField] float velocidad;
-    [SerializeField] Transform limLeft;
-    [SerializeField] Transform limRight;
+    [SerializeField] Transform destino;
+    [SerializeField] float velocidadMov;
 
-
+    //variables a guardar
+    private Vector3 inicioBloque, finBloque;
     // Start is called before the first frame update
     void Start()
     {
-        anim = GetComponent<Animator>();
-        rb = GetComponent<Rigidbody2D>();
-
-        var vel = rb.velocity;
-        vel.x = Mathf.Abs(velocidad);
-        rb.velocity = vel;
+        if (destino != null)
+        {
+            destino.parent = null;
+            inicioBloque = transform.position;
+            finBloque = destino.position;
+        }
     }
 
     // Update is called once per frame
     void Update()
     {
-        if(transform.localScale.x < 0)
-        {
-            var vel = rb.velocity;
-            vel.x = velocidad;
-            rb.velocity = vel;
-        }
-        else
-        {
-            var vel = rb.velocity;
-            vel.x = -velocidad;
-            rb.velocity = vel;
-        }
-        if (transform.position.x == limLeft.position.x )
-        {
-            transform.localScale = new Vector3(-1f, 1f, 1f);
-            
-        }
-        if (transform.position.x == limRight.position.x )
-        {
-            transform.localScale = new Vector3(1f, 1f, 1f);
-           
-        }
+
     }
     private void FixedUpdate()
     {
-        
+        if (destino != null)
+        {
+            float deltaVelocidad = velocidadMov * Time.deltaTime;
+            transform.position = Vector3.MoveTowards(transform.position, destino.position, deltaVelocidad);
+        }
+        if (transform.position == destino.position)
+        {
+            transform.localScale = new Vector3(transform.localScale.x * -1, 1f, 1f);
+            destino.position = (destino.position == inicioBloque) ? finBloque : inicioBloque;
+        }
     }
 }
