@@ -295,6 +295,7 @@ Assets\Scripts\CaidaBloque.cs
 Assets\Scripts\CameraFollow.cs
 Assets\Scripts\ColisionPerdida.cs
 Assets\Scripts\Disparador.cs
+Assets\Scripts\EnemyPathing.cs
 Assets\Scripts\Hormiga.cs
 Assets\Scripts\Jugador.cs
 Assets\Scripts\mainmenu.cs

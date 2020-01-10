@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 2383260710052241439}
   m_Layer: 0
   m_Name: Bolita
-  m_TagString: Untagged
+  m_TagString: Muerte
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

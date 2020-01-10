@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 9085446586324269036}
   m_Layer: 0
   m_Name: EspinaAb
-  m_TagString: Untagged
+  m_TagString: Muerte
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

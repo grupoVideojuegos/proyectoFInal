@@ -75,10 +75,7 @@ public class Jugador : MonoBehaviour
     {
         ApplyMovement();
         CheckSurroundings();
-        if (transform.position.y < -14.29f)
-        {
-            transform.position = spawn.position;
-        }
+        
     }
 
     private void CheckIfWallSliding()
@@ -276,5 +273,11 @@ public class Jugador : MonoBehaviour
         Gizmos.DrawWireSphere(groundCheck.position, groundCheckRadius);
 
         Gizmos.DrawLine(wallCheck.position, new Vector3(wallCheck.position.x + wallCheckDistance,wallCheck.position.y , wallCheck.position.z));
+    }
+    void OnCollisionEnter2D(Collision2D col)
+    {
+        if(col.gameObject.tag.Equals("Muerte"))
+            transform.position = spawn.position;
+        
     }
 }
