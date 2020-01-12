@@ -8,11 +8,12 @@ public class EnemyPathing : MonoBehaviour
     [SerializeField] float MoveSpeed = 3f;
     int wayPointIndex = 0;
     bool reverse = false;
-
+    List<Transform> wayPointsReverse;
     // Start is called before the first frame update
     void Start()
     {
         transform.position = wayPoints[wayPointIndex].transform.position;
+        
     }
 
     // Update is called once per frame
@@ -26,39 +27,25 @@ public class EnemyPathing : MonoBehaviour
     }
     private void move()
     {
-        if (wayPointIndex <= wayPoints.Count - 1 && !reverse)
+        if (wayPointIndex <= wayPoints.Count - 1)
         {
             var nexPos = wayPoints[wayPointIndex].transform.position;
             var movement = MoveSpeed * Time.deltaTime;
             transform.position = Vector3.MoveTowards(transform.position, nexPos, movement);
-            Debug.Log("khe");
+            
             if (transform.position == nexPos)
             {
                 wayPointIndex++;
-                Debug.Log("kheasf");
+                
             }
+            if (wayPointIndex == wayPoints.Count)
+            {
+                wayPointIndex = 0;
+                wayPoints.Reverse();
+                transform.localScale = new Vector3(transform.localScale.x*-1f,1f,1f);
+            }
+            
         }
-        else if(wayPointIndex >= 0)
-        {
-            if(wayPointIndex >= wayPoints.Count)
-            {
-                transform.localScale = new Vector3( -1f, 1f, 1f);
-            }
-            var nexPos = wayPoints[wayPointIndex-1].transform.position;
-            var movement = MoveSpeed * Time.deltaTime;
-            transform.position = Vector3.MoveTowards(transform.position, nexPos, movement);
-            Debug.Log("khe");
-            if (transform.position == nexPos)
-            {
-                wayPointIndex--;
-                Debug.Log("kheasf");
-            }
-
-            if(wayPointIndex == 0)
-            {
-                reverse = false;
-            }
-
-        }
+        
     }
 }
