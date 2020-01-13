@@ -290,7 +290,7 @@
 /define:ENABLE_LEGACY_INPUT_MANAGER
 /define:CSHARP_7_OR_LATER
 /define:CSHARP_7_3_OR_NEWER
-Assets\ApproachBadEnding.cs
+Assets\Scripts\AdjustBrightness.cs
 Assets\Scripts\Bolita.cs
 Assets\Scripts\CaidaBloque.cs
 Assets\Scripts\CameraFollow.cs
@@ -304,6 +304,6 @@ Assets\Scripts\mainmenu.cs
 Assets\Scripts\MovingPlatform.cs
 Assets\Scripts\NextLevel.cs
 Assets\Scripts\PlatformFalling.cs
+Assets\Scripts\ShowText.cs
 Assets\Scripts\Trayectoria.cs
 Assets\Scripts\VerifSuelo.cs
-Assets\ShowText.cs

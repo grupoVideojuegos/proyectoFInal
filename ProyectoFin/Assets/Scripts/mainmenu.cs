@@ -5,13 +5,14 @@ using UnityEngine.SceneManagement;
 public class mainmenu : MonoBehaviour
 {
     // Start is called before the first frame update
+    public int index;
     public void PlayGame()
     {
-        SceneManager.LoadScene(3);//scene changer
+        SceneManager.LoadScene(index);//scene changer
     }
     public void SelectScene()
     {
-        SceneManager.LoadScene(1);
+        SceneManager.LoadScene(index+2);
 
     }
     public void QuitGame() {
