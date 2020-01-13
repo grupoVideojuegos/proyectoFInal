@@ -276,8 +276,12 @@ public class Jugador : MonoBehaviour
     }
     void OnCollisionEnter2D(Collision2D col)
     {
-        if(col.gameObject.tag.Equals("Muerte"))
+        if (col.gameObject.tag.Equals("Muerte"))
+        {
+            FindObjectOfType<GameStatus>().addDeath();
             transform.position = spawn.position;
+        }
+            
 
         
     }
@@ -285,6 +289,7 @@ public class Jugador : MonoBehaviour
     {
         if (collision.CompareTag("Muerte"))
         {
+            FindObjectOfType<GameStatus>().addDeath();
             transform.position = spawn.position;
         }
     }
