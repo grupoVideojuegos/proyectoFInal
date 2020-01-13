@@ -289,7 +289,7 @@ public class Jugador : MonoBehaviour
     {
         if (collision.CompareTag("Muerte"))
         {
-            FindObjectOfType<GameStatus>().addDeath();
+            //FindObjectOfType<GameStatus>().addDeath();
             transform.position = spawn.position;
         }
     }
