@@ -1,10 +1,10 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using UnityEngine.SceneManagement;
 public class Jugador : MonoBehaviour
 {
-
+    [SerializeField] AudioClip[] sounds;
     private float movementInputDirection;
     private float jumpTimer;
     private float turnTimer;
@@ -23,10 +23,10 @@ public class Jugador : MonoBehaviour
     private bool checkJumpMultiplier;
     private bool canMove;
     private bool canFlip;
-
+    private Scene scene;
     private Rigidbody2D rb;
     private Animator anim;
-
+    private bool hasStarted = false;
     public int amountOfJumps = 1;
 
     public float movementSpeed = 10.0f;
@@ -58,6 +58,7 @@ public class Jugador : MonoBehaviour
         amountOfJumpsLeft = amountOfJumps;
         wallHopDirection.Normalize();
         wallJumpDirection.Normalize();
+        scene = SceneManager.GetActiveScene();
     }
 
     // Update is called once per frame
@@ -219,6 +220,7 @@ public class Jugador : MonoBehaviour
             jumpTimer = 0;
             isAttempingToJump = false;
             checkJumpMultiplier = true;
+            JumpSound();
         }
     }
     private void WallJump()
@@ -237,6 +239,7 @@ public class Jugador : MonoBehaviour
             turnTimer = 0;
             canMove = true;
             canFlip = true;
+            JumpSound();
         }
     }
 
@@ -278,6 +281,7 @@ public class Jugador : MonoBehaviour
     {
         if (col.gameObject.tag.Equals("Muerte"))
         {
+            DeathSound();
             FindObjectOfType<GameStatus>().addDeath();
             transform.position = spawn.position;
         }
@@ -289,8 +293,29 @@ public class Jugador : MonoBehaviour
     {
         if (collision.CompareTag("Muerte"))
         {
-            //FindObjectOfType<GameStatus>().addDeath();
+            DeathSound();
+            FindObjectOfType<GameStatus>().addDeath();
             transform.position = spawn.position;
+            
+            
         }
+    }
+
+    private void JumpSound()
+    {
+        AudioClip clip = sounds[0];
+        GetComponent<AudioSource>().PlayOneShot(clip);
+    }
+
+    private void DeathSound()
+    {
+        AudioClip clip = sounds[1];
+        GetComponent<AudioSource>().PlayOneShot(clip);
+    }
+
+    private void MovementSound()
+    {
+        AudioClip clip = sounds[1];
+        GetComponent<AudioSource>().PlayOneShot(clip);
     }
 }
