@@ -282,7 +282,12 @@ public class Jugador : MonoBehaviour
         if (col.gameObject.tag.Equals("Muerte"))
         {
             DeathSound();
-            FindObjectOfType<GameStatus>().addDeath();
+            int y = SceneManager.GetActiveScene().buildIndex;
+            if (y > 2)
+            {
+                FindObjectOfType<GameStatus>().addDeath();
+            }
+
             transform.position = spawn.position;
         }
             
@@ -294,7 +299,12 @@ public class Jugador : MonoBehaviour
         if (collision.CompareTag("Muerte"))
         {
             DeathSound();
-            FindObjectOfType<GameStatus>().addDeath();
+            int y = SceneManager.GetActiveScene().buildIndex;
+            if (y > 2)
+            {
+                FindObjectOfType<GameStatus>().addDeath();
+            }
+            
             transform.position = spawn.position;
             
             
