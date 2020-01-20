@@ -301,9 +301,11 @@ Assets\Scripts\GameStatus.cs
 Assets\Scripts\Hormiga.cs
 Assets\Scripts\Jugador.cs
 Assets\Scripts\mainmenu.cs
+Assets\Scripts\Menu.cs
 Assets\Scripts\MovingPlatform.cs
 Assets\Scripts\NextLevel.cs
 Assets\Scripts\PlatformFalling.cs
+Assets\Scripts\SceneLoader.cs
 Assets\Scripts\ShowText.cs
 Assets\Scripts\Trayectoria.cs
 Assets\Scripts\VerifSuelo.cs
