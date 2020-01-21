@@ -305,9 +305,14 @@ public class Jugador : MonoBehaviour
                 FindObjectOfType<GameStatus>().addDeath();
             }
             
+            
             transform.position = spawn.position;
             
             
+        }
+        if (collision.CompareTag("NextLevel"))
+        {
+            FindObjectOfType<SceneLoader>().LoadNextScene();
         }
     }
 
