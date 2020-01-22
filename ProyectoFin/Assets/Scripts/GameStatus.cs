@@ -9,7 +9,7 @@ public class GameStatus : MonoBehaviour
     [SerializeField] TextMeshProUGUI deaths;
 
 
-
+    /*
     private void Awake()
     {
         int gameStatusCount = FindObjectsOfType<GameStatus>().Length;
@@ -19,7 +19,7 @@ public class GameStatus : MonoBehaviour
         }else{
             DontDestroyOnLoad(gameObject);
         }
-    }
+    }*/
     // Start is called before the first frame update
     void Start()
     {
